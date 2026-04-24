@@ -1,0 +1,11 @@
+{
+  "name": "Kyushu Trip Planner",
+  "description": "A cute, hand-drawn style Northern Kyushu travel itinerary and expense manager.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "itinerary_management",
+    "budget_tracking"
+  ]
+}

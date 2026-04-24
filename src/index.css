@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Zen Maru Gothic", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Warm Organic Palette */
+  --color-brand-bg: #F5F2ED;
+  --color-brand-paper: #FFFBF7;
+  --color-brand-black: #2D2D2D;
+  --color-brand-beige: #EAE2D6;
+  --color-brand-sage: #A8B595;
+  --color-brand-rose: #FFD1DC;
+  --color-brand-peach: #FDF2E9;
+  --color-brand-coral: #FFE4E1;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-brand-black font-sans antialiased;
+  }
+}
+
+/* Scrapbook UI Patterns */
+.sketch-border {
+  @apply border-2 border-brand-black;
+}
+
+.hard-shadow-rose {
+  box-shadow: 6px 6px 0px 0px var(--color-brand-rose);
+}
+
+.hard-shadow-black {
+  box-shadow: 4px 4px 0px 0px var(--color-brand-black);
+}
+
+.stamp-skew-left {
+  transform: rotate(-2deg);
+}
+
+.stamp-skew-right {
+  transform: rotate(2deg);
+}
+
+.bg-grid-paper {
+  background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
