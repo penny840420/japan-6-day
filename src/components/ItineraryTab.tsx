@@ -48,9 +48,8 @@ export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
             <span className="text-sm font-black leading-none">{day.date.match(/\((.*?)\)/)?.[1] || 'DAY'}</span>
           </div>
           <div className="flex-1">
-            <div className="flex items-center justify-between mb-0.5">
-              <h2 className="text-xl font-black leading-tight text-brand-black tracking-tight">今日行程摘要</h2>
-              <div className="flex items-center gap-1.5 bg-brand-yellow/10 px-2 py-0.5 rounded-lg border border-brand-yellow/20">
+            <div className="space-y-1">
+              <div className="flex items-center gap-1.5 w-fit bg-brand-yellow/10 px-2 py-0.5 rounded-lg border border-brand-yellow/20">
                 <span className="text-xs">
                   {day.weather.condition === '晴' ? '☀️' : day.weather.condition === '雨' ? '🌧️' : '☁️'}
                 </span>
@@ -58,8 +57,9 @@ export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
                   {day.weather.temp.max}°
                 </span>
               </div>
+              <h2 className="text-xl font-black leading-tight text-brand-black tracking-tight whitespace-nowrap">行程摘要</h2>
             </div>
-            <div className="flex gap-4 mt-1 underline decoration-brand-yellow decoration-2 underline-offset-4">
+            <div className="flex gap-4 mt-2 underline decoration-brand-yellow decoration-2 underline-offset-4">
               <span className="text-[10px] font-bold opacity-60 flex items-center gap-1">
                 <Navigation size={10} strokeWidth={3} /> {day.summary.travelTime}
               </span>

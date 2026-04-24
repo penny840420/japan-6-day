@@ -100,7 +100,7 @@ export default function App() {
         {/* Floating Bottom Nav */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[180px] h-14 bg-white/90 backdrop-blur-md border-2 border-brand-black rounded-full shadow-lg flex items-center justify-around px-4 z-50">
           <NavItem active={activeTab === 'itinerary'} onClick={() => setActiveTab('itinerary')} emoji="🎒" label="行程" />
-          <NavItem active={activeTab === 'split'} onClick={() => setActiveTab('split')} emoji="🪙" label="記帳" />
+          <NavItem active={activeTab === 'split'} onClick={() => setActiveTab('split')} emoji="🪙" label="匯率" />
         </div>
       </div>
     </div>
