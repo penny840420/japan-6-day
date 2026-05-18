@@ -61,14 +61,14 @@ function AppContent() {
               <button
                 key={day.day}
                 onClick={() => setActiveDay(day.day)}
-                translate="no"
-                className={`shrink-0 px-3.5 py-1.5 rounded-2xl text-[11px] font-black transition-all border-2 ${
+                className={`shrink-0 px-3.5 py-1.5 rounded-2xl text-[11px] font-black transition-all border-2 notranslate ${
                   activeDay === day.day
                     ? 'bg-brand-black text-white border-brand-black shadow-md'
                     : 'bg-brand-beige text-brand-black/60 border-transparent hover:bg-brand-beige/80'
                 }`}
+                translate="no"
               >
-                Day {day.day}
+                <span className="notranslate" translate="no">Day {day.day}</span>
               </button>
             ))}
           </div>

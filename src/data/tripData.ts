@@ -316,6 +316,19 @@ export const TRIP_DATA: DayPlan[] = [
     souvenirs: [
       { name: '博多通りもん', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Snack', location: '博多駅', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Hakata+Torimon' },
       { name: '梅枝餅', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Cake', location: '太宰府', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Umegae+Mochi' },
+      { name: '八女抹茶', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Matcha', location: '福岡', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=八女抹茶' },
+      { name: '奴奴雞 (努努雞)', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Chicken', location: '博多駅', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=努努雞' },
+      { name: '如水庵草莓大福', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Daifuku', location: '博多', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=如水庵+草莓大福' },
+      { name: '治一郎布丁', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Pudding', location: '福岡', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=治一郎+布丁' },
+      { name: '治一郎年輪蛋糕', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Baumkuchen', location: '福岡', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=治一郎+年輪蛋糕' },
+      { name: '太宰府布丁', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Pudding2', location: '太宰府', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=太宰府布丁' },
+      { name: 'まち吉豆皮麻糬', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Mochi', location: '福岡', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=餅吉+豆皮麻糬' },
+      { name: 'AMANBERRY 草莓餅乾', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Berry', location: '博多', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=AMANBERRY' },
+      { name: '青嵐抹茶粉', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Powder', location: '福岡', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=一保堂+青嵐+抹茶粉' },
+      { name: '鈴懸 草莓大福', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Suzukake', location: '博多', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=鈴懸+草莓大福' },
+      { name: 'Full full 明太子麵包', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Bread', location: '福岡', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Full+full+明太子麵包' },
+      { name: 'pain stock 明太子麵包', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Pain', location: '福岡', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=pain+stock+明太子' },
+      { name: 'Calbee 薯條餅乾 (明太子口味)', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Calbee', location: '博多', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Calbee+明太子' },
     ]
   },
   {
@@ -472,6 +485,8 @@ export const TRIP_DATA: DayPlan[] = [
     },
     souvenirs: [
       { name: '熊本即食糰子', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Dango', location: '城彩苑', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Ikinari+Dango' },
+      { name: '熱敷眼罩', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Eye', location: '藥妝店', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=蒸氣眼罩' },
+      { name: 'YOLU 夜間修護洗護系列', image: 'https://api.dicebear.com/7.x/initials/svg?seed=Yolu', location: '藥妝店', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=YOLU+潤髮乳' },
     ]
   },
   {
