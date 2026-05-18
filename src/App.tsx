@@ -10,15 +10,15 @@ import { ItineraryTab } from './components/ItineraryTab';
 import { MapTab } from './components/MapTab';
 import { WeatherTab } from './components/WeatherTab';
 import { SplitTab } from './components/SplitTab';
-import { TRIP_DATA } from './data/tripData';
+import { TRIP_DATA as days } from './data/tripData';
 
 type Tab = 'itinerary' | 'split';
 
-export default function App() {
+function AppContent() {
   const [activeTab, setActiveTab] = useState<Tab>('itinerary');
   const [activeDay, setActiveDay] = useState(1);
 
-  const days = TRIP_DATA;
+  if (days.length === 0) return null;
 
   return (
     <div className="min-h-screen bg-brand-bg flex items-center justify-center p-4">
@@ -31,14 +31,16 @@ export default function App() {
           <div className="flex justify-between items-end mb-4">
             <div>
               <p className="text-[10px] uppercase tracking-widest font-bold opacity-40">6/5 — 6/10</p>
-              <h1 className="text-2xl font-bold tracking-tight">北九州自由行 <span className="text-sm font-normal">🇯🇵</span></h1>
+              <div className="flex items-center gap-2">
+                <h1 className="text-2xl font-bold tracking-tight">北九州自由行 <span className="text-sm font-normal">🇯🇵</span></h1>
+              </div>
             </div>
             <div className="bg-brand-coral w-10 h-10 rounded-full flex items-center justify-center border-2 border-brand-black rotate-3 shadow-sm">
               <span className="text-xl">✈️</span>
             </div>
           </div>
 
-          {/* Hourly Weather Forecast - Inserted here */}
+          {/* Hourly Weather Forecast */}
           <div className="mb-6 px-1">
             <div className="flex justify-between overflow-x-auto gap-4 no-scrollbar">
               {days.find(d => d.day === activeDay)?.weather.hourly?.map((wh, idx) => (
@@ -104,6 +106,12 @@ export default function App() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <AppContent />
   );
 }
 

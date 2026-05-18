@@ -35,6 +35,8 @@ export interface DayPlan {
     travelTime: string;
     spotCount: number;
   };
+  accommodation?: string;
+  accommodationUrl?: string;
   outfitAdvice: string;
   weather: {
     condition: '晴' | '雨' | '陰';

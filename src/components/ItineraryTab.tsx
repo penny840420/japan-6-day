@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { TRIP_DATA } from '../data/tripData';
-import { MapPin, Clock, Info, Navigation, Camera, Car, Fuel, Coffee, ShoppingBag, Utensils, Star, Shirt, ParkingCircle, ChevronDown, ChevronUp, Gift } from 'lucide-react';
+import { MapPin, Clock, Info, Navigation, Camera, Car, Fuel, Coffee, ShoppingBag, Utensils, Star, Shirt, ParkingCircle, ChevronDown, ChevronUp, Gift, Home } from 'lucide-react';
 import { Spot, SpotCategory } from '../types';
+import { TRIP_DATA as days } from '../data/tripData';
 
 const categoryIcons: Record<SpotCategory, any> = {
   food: Utensils,
@@ -24,7 +24,7 @@ const categoryColors: Record<SpotCategory, string> = {
 
 export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
   const [showSouvenirs, setShowSouvenirs] = useState(false);
-  const day = TRIP_DATA.find((d) => d.day === activeDay);
+  const day = days.find((d) => d.day === activeDay);
 
   if (!day) return null;
 
@@ -37,7 +37,6 @@ export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
     >
       {/* Day Summary Card (Stamp Style) */}
       <div className="relative bg-white border-2 border-brand-black rounded-[32px] p-6 hard-shadow-rose mt-4 mx-1">
-        {/* City/Location Label - Centered directly on top */}
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-sage text-white text-[11px] font-black px-6 py-1.5 rounded-full border-2 border-brand-black shadow-lg whitespace-nowrap z-30">
           {day.city}
         </div>
@@ -59,10 +58,12 @@ export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
               </div>
               <h2 className="text-xl font-black leading-tight text-brand-black tracking-tight whitespace-nowrap">行程摘要</h2>
             </div>
-            <div className="flex gap-4 mt-2 underline decoration-brand-yellow decoration-2 underline-offset-4">
-              <span className="text-[10px] font-bold opacity-60 flex items-center gap-1">
-                <MapPin size={10} strokeWidth={3} /> {day.summary.spotCount} 景點
-              </span>
+            <div className="flex justify-between items-center mt-2">
+              <div className="flex gap-4 underline decoration-brand-yellow decoration-2 underline-offset-4">
+                <span className="text-[10px] font-bold opacity-60 flex items-center gap-1">
+                  <MapPin size={10} strokeWidth={3} /> {day.spots.length} 景點
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -76,7 +77,7 @@ export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
             const spotSouvenirs = day.souvenirs ? day.souvenirs.filter(s => {
               const spotLower = spot.name.toLowerCase();
               const locLower = s.location?.toLowerCase() || '';
-              return locLower.includes(spotLower) || spotLower.includes(locLower) || 
+              return (locLower && spotLower && (locLower.includes(spotLower) || spotLower.includes(locLower))) || 
                      (spotLower.includes('駅') && locLower.includes('駅')) ||
                      (spotLower.includes('天神') && locLower.includes('天神')) ||
                      (spotLower.includes('太宰府') && locLower.includes('太宰府')) ||
@@ -88,12 +89,10 @@ export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
                 <div className="flex items-start gap-4">
                   {/* Polaroid Frame */}
                   <div className={`w-24 h-24 bg-white p-1 border border-brand-black/10 rounded-sm shadow-md ${rotation} flex-shrink-0 relative overflow-hidden`}>
-                    <div className={`w-full h-16 rounded-sm mb-1 flex items-center justify-center text-lg ${categoryColors[spot.category]}`}>
-                      <Icon size={32} strokeWidth={1} />
+                    <div className={`w-full h-16 rounded-sm mb-1 flex items-center justify-center text-lg ${spot.category ? categoryColors[spot.category] : 'bg-gray-100'}`}>
+                      {Icon && <Icon size={32} strokeWidth={1} />}
                     </div>
                     <p className="text-[7px] text-center font-bold tracking-tighter truncate px-0.5">{spot.name}</p>
-                    
-                    {/* Decorative "Tape" */}
                     <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-8 h-3 bg-brand-yellow/40 rotate-[-5deg] border border-brand-black/5" />
                   </div>
 
@@ -121,7 +120,7 @@ export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
                     )}
 
                     {/* Navigation Buttons */}
-                    <div className="flex gap-2 items-center">
+                    <div className="flex gap-2 items-center overflow-x-auto no-scrollbar">
                       {spot.googleMapsUrl && (
                         <a 
                           href={spot.googleMapsUrl} 
@@ -146,7 +145,7 @@ export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
                   </div>
                 </div>
 
-                {/* Integrated Souvenirs - Moved outside flex-1 to occupy full width and align with photo */}
+                {/* Integrated Souvenirs */}
                 {spotSouvenirs.length > 0 && (
                   <div className="mt-6 space-y-2 border-t-2 border-dashed border-brand-black/5 pt-4">
                     <p className="text-[10px] font-black text-brand-black/40 uppercase tracking-widest flex items-center gap-1 mb-3">
@@ -154,7 +153,7 @@ export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
                     </p>
                     <div className="grid grid-cols-1 xs:grid-cols-2 gap-2">
                       {spotSouvenirs.map((item, sIdx) => (
-                        <div key={sIdx} className="bg-white/60 p-2 rounded-2xl flex gap-3 items-center border border-brand-black/10 shadow-sm">
+                        <div key={sIdx} className="bg-white/60 p-2 rounded-2xl flex gap-3 items-center border border-brand-black/10 shadow-sm relative group/souv">
                            <div className="w-10 h-10 shrink-0 rounded-xl overflow-hidden border-2 border-brand-black/5 bg-brand-bg">
                              <img 
                                 src={item.image} 
@@ -189,28 +188,28 @@ export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
         </div>
       </div>
 
-      {/* Remaining Souvenirs that didn't match a specific spot (General Shopping) */}
+      {/* Remaining Souvenirs */}
       {day.souvenirs && (
         <div className="bg-white border-2 border-brand-black rounded-[32px] overflow-hidden hard-shadow-black mt-8 relative mx-1">
           <div className="absolute -top-1 -left-1 w-8 h-8 bg-brand-yellow/20 -z-10 rotate-12 sketch-border" />
-          <button 
-            onClick={() => setShowSouvenirs(!showSouvenirs)}
-            className="w-full flex items-center justify-between p-6 hover:bg-brand-bg/10 transition-colors"
-          >
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between p-6">
+            <button 
+              onClick={() => setShowSouvenirs(!showSouvenirs)}
+              className="flex-1 flex items-center gap-3"
+            >
                <Gift size={24} className="text-brand-sage" />
-               <h4 className="font-black text-sm uppercase tracking-tight">今日購物清單</h4>
+               <h4 className="font-black text-sm uppercase tracking-tight text-left">推薦購買清單</h4>
                <span className="bg-brand-sage/20 text-brand-sage text-[10px] px-2 py-0.5 rounded-full font-black">
                  {day.souvenirs.length}
                </span>
-            </div>
-            <motion.div
-              animate={{ rotate: showSouvenirs ? 180 : 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <ChevronDown size={20} className="text-brand-black/40" />
-            </motion.div>
-          </button>
+               <motion.div
+                animate={{ rotate: showSouvenirs ? 180 : 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <ChevronDown size={20} className="text-brand-black/40" />
+              </motion.div>
+            </button>
+          </div>
           
           <AnimatePresence>
             {showSouvenirs && (
@@ -224,7 +223,7 @@ export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
                 <div className="px-6 pb-6 pt-2">
                   <div className="grid grid-cols-1 xs:grid-cols-2 gap-3">
                      {day.souvenirs.map((item, idx) => (
-                        <div key={idx} className="flex gap-4 items-center bg-brand-bg/20 p-3 rounded-2xl border-2 border-brand-black/5 hover:border-brand-black/10 transition-colors">
+                        <div key={idx} className="flex gap-4 items-center bg-brand-bg/20 p-3 rounded-2xl border-2 border-brand-black/5 hover:border-brand-black/10 transition-colors relative group">
                            <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-white shadow-sm shrink-0">
                               <img 
                                 src={item.image} 
@@ -258,16 +257,43 @@ export const ItineraryTab = ({ activeDay }: { activeDay: number }) => {
         </div>
       )}
 
-      {/* Outfit Advice (Paper Scrap) */}
-      <div className="bg-brand-peach border-2 border-brand-black rounded-[24px] p-5 hard-shadow-black mt-8 mx-1 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-16 h-16 bg-white/20 rotate-45 translate-x-8 -translate-y-8" />
-        <div className="flex items-center gap-2 mb-3">
-          <Shirt size={18} className="text-brand-black" />
-          <h4 className="text-[10px] font-black uppercase tracking-widest text-brand-black/60">穿搭小指南</h4>
+      {/* Accommodation & Outfit Advice */}
+      <div className="grid grid-cols-1 gap-4 mt-8 mx-1">
+        {(day.accommodation || day.accommodationUrl) && (
+          <div className="bg-brand-sage/20 border-2 border-brand-black rounded-[24px] p-5 hard-shadow-black relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-16 h-16 bg-white/20 rotate-45 translate-x-8 -translate-y-8" />
+            <div className="flex items-center gap-2 mb-3">
+              <Home size={18} className="text-brand-black" />
+              <h4 className="text-[10px] font-black uppercase tracking-widest text-brand-black/60">住宿資訊</h4>
+            </div>
+            {day.accommodation && (
+              <p className="text-[11px] text-brand-black font-black leading-relaxed mb-3">
+                {day.accommodation}
+              </p>
+            )}
+            {day.accommodationUrl && (
+              <a 
+                href={day.accommodationUrl} 
+                target="_blank" 
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 bg-brand-black text-white text-[9px] font-black px-3 py-1.5 rounded-xl border-2 border-brand-black shadow-sm active:translate-y-0.5 transition-all"
+              >
+                <Navigation size={10} strokeWidth={3} /> 導航至此
+              </a>
+            )}
+          </div>
+        )}
+
+        <div className="bg-brand-peach border-2 border-brand-black rounded-[24px] p-5 hard-shadow-black relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-16 h-16 bg-white/20 rotate-45 translate-x-8 -translate-y-8" />
+          <div className="flex items-center gap-2 mb-3">
+            <Shirt size={18} className="text-brand-black" />
+            <h4 className="text-[10px] font-black uppercase tracking-widest text-brand-black/60">穿搭小指南</h4>
+          </div>
+          <p className="text-[11px] text-brand-black font-black leading-relaxed">
+            {day.outfitAdvice}
+          </p>
         </div>
-        <p className="text-[11px] text-brand-black font-black leading-relaxed">
-          {day.outfitAdvice}
-        </p>
       </div>
     </motion.div>
   );
