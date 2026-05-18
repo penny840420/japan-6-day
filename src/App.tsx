@@ -49,7 +49,7 @@ function AppContent() {
                   {wh.condition === '晴' && <Sun size={14} strokeWidth={2} className="text-brand-black" />}
                   {wh.condition === '雨' && <CloudRain size={14} strokeWidth={2} className="text-brand-black" />}
                   {wh.condition === '陰' && <Cloud size={14} strokeWidth={2} className="text-brand-black" />}
-                  <span className="text-[10px] font-bold mt-0.5">{wh.temp}°</span>
+                  <span className="text-[10px] font-bold mt-0.5" translate="no">{wh.temp}°</span>
                 </div>
               ))}
             </div>
@@ -61,6 +61,7 @@ function AppContent() {
               <button
                 key={day.day}
                 onClick={() => setActiveDay(day.day)}
+                translate="no"
                 className={`shrink-0 px-3.5 py-1.5 rounded-2xl text-[11px] font-black transition-all border-2 ${
                   activeDay === day.day
                     ? 'bg-brand-black text-white border-brand-black shadow-md'

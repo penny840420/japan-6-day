@@ -31,9 +31,9 @@ export const WeatherTab = ({ activeDay }: { activeDay: number }) => {
               <WeatherIcon size={64} className="text-brand-black" strokeWidth={1.5} />
            </div>
            <h2 className="text-4xl font-black tracking-tight">{day.weather.condition}</h2>
-           <div className="flex gap-4 mt-4 text-xl font-bold">
-              <span className="text-brand-black">{day.weather.temp.max}°C</span>
-              <span className="text-brand-black/40">{day.weather.temp.min}°C</span>
+           <div className="flex gap-4 mt-4 text-xl font-bold" translate="no">
+              <span className="text-brand-black">{day.weather.temp.max}°</span>
+              <span className="text-brand-black/40">{day.weather.temp.min}°</span>
            </div>
         </div>
 
@@ -80,7 +80,7 @@ export const WeatherTab = ({ activeDay }: { activeDay: number }) => {
               <div key={hour} className="flex flex-col items-center shrink-0">
                 <span className="text-[10px] opacity-40 font-bold mb-2">{hour}:00</span>
                 <Sun size={20} strokeWidth={1.5} />
-                <span className="text-sm font-bold mt-2">24°</span>
+                <span className="text-sm font-bold mt-2" translate="no">24°</span>
               </div>
             ))}
          </div>

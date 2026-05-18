@@ -52,7 +52,7 @@ export const SplitTab = () => {
           </div>
           
           <div className="flex items-end gap-2 flex-nowrap">
-            <h2 className="text-2xl font-black tracking-tight whitespace-nowrap">1 JPY =</h2>
+            <h2 className="text-2xl font-black tracking-tight whitespace-nowrap" translate="no">1 JPY =</h2>
             <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-2xl border border-white/5 mb-0.5 shrink-0">
               <input 
                 type="number" 
@@ -75,7 +75,7 @@ export const SplitTab = () => {
       <div className="bg-white border-2 border-brand-black rounded-[32px] p-6 hard-shadow-black">
         <div className="space-y-4">
           <div className={`p-4 rounded-2xl border-2 transition-all ${activeInput === 'JPY' ? 'border-brand-black bg-brand-bg' : 'border-transparent bg-transparent'}`}>
-            <label className="text-[10px] font-black uppercase opacity-40 ml-1">日幣 (JPY)</label>
+            <label className="text-[10px] font-black uppercase opacity-40 ml-1">日幣</label>
             <div className="flex items-center gap-3">
               <span className="text-2xl font-black text-brand-black/20">¥</span>
               <input 
@@ -119,7 +119,7 @@ export const SplitTab = () => {
 
         {/* Quick Select */}
         <div className="mt-8 pt-6 border-t-2 border-dashed border-brand-black/10">
-          <p className="text-[10px] font-black uppercase opacity-30 mb-3 text-center tracking-widest">快速輸入日幣</p>
+          <p className="text-[10px] font-black uppercase opacity-30 mb-3 text-center tracking-widest">快速輸入</p>
           <div className="grid grid-cols-2 gap-2">
             {quickAmounts.map(amt => (
               <button 
